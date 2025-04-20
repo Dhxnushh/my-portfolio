@@ -1,103 +1,362 @@
-import Image from "next/image";
+"use client";
+import { RetroGrid } from "@/components/magicui/retro-grid";
+import { Meteors } from "@/components/magicui/meteors";
+import { Particles } from "@/components/magicui/particles";
+import { TextAnimate } from "@/components/magicui/text-animate";
+import { HyperText } from "@/components/magicui/hyper-text";
+import { VelocityScroll } from "@/components/magicui/scroll-based-velocity";
+import { Ripple } from "@/components/magicui/ripple";
+import { Home, Settings, Search,Github, Linkedin, Mail, Phone, FileText,MessageCircleMore, Info, Code, Folder, MessageCircle } from "lucide-react";
+import { Pointer } from "@/components/magicui/pointer";
+import { ScrollProgress } from "@/components/magicui/scroll-progress";
+import { DotPattern } from "@/components/magicui/dot-pattern";
+import { OrbitingCircles } from "@/components/magicui/orbiting-circles";
+import { File } from "lucide-react";
+import { WarpBackground } from "@/components/magicui/warp-background";
+import { Marquee } from "@/components/magicui/marquee";
+import { MagicCard } from "@/components/magicui/magic-card";
 
-export default function Home() {
+export default function Main() {
+
+  const scrollTo = (id: string) => {
+    const section = document.getElementById(id);
+    if (section) section.scrollIntoView({ behavior: "smooth"});
+  };
+
+  const navItems = [
+    { icon: <Home size={25} />, label: "Home", id: "home" },
+    { icon: <Info size={25} />, label: "About Me", id: "about" },
+    { icon: <Code size={25} />, label: "Tech Stack", id: "tech" },
+    { icon: <Folder size={25} />, label: "Projects", id: "projects" },
+  ];
+
+  const socialItems = [
+    { icon: <Github size={25} />, label: "GitHub", url: "https://github.com/yourusername" },
+    { icon: <Linkedin size={25} />, label: "LinkedIn", url: "https://linkedin.com/in/yourprofile" },
+    { icon: <Mail size={25} />, label: "Gmail", url: "mailto:youremail@gmail.com" },
+    { icon: <Phone size={25} />, label: "Phone", url: "tel:+919876543210" },
+    { icon: <MessageCircle size={25} />, label: "Discord", url: "https://discord.com/users/yourid" },
+  ];
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <>
+      <ScrollProgress className="top-[77px] z-50"/>
+      <Pointer>
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle cx="12" cy="12" r="10" className="fill-black" />
+          <circle cx="12" cy="12" r="5" className="fill-white" />
+        </svg>
+      </Pointer>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
+      {/* Top Navigation */}
+      <header className="fixed rounded-b-4xl left-1/2 z-50 justify-between -translate-x-1/2 p-2 w-full border-none backdrop-blur-md border border-black/20  flex items-center gap-3">
+      <div className="flex flex-row justify-around items-center">
+      {[...navItems.map((item) => (
+        <button
+          key={item.label}
+          onClick={() => scrollTo(item.id)}
+          className="group flex flex-col items-center justify-center p-2  border-black rounded-2xl  hover:text-black transition duration-300 ease-in-out"
+        >
+          {item.icon}
+          <span className="text-[10px] font-mono opacity-0 group-hover:opacity-100 transition-opacity duration-200 mt-1">
+            {item.label}
+          </span>
+        </button>
+      ))]}
+      </div>
+      <div className="flex flex-row justify-around items-center">
+      {[...socialItems.map((item) => (
+        <a
+          key={item.label}
+          href={item.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group flex flex-col right-0 items-center justify-center p-2  border-black rounded-full  hover:text-black transition duration-300 ease-in-out"
+        >
+          {item.icon}
+          <span className="text-[10px] font-mono opacity-0 group-hover:opacity-100 transition-opacity duration-200 mt-1">
+            {item.label}
+          </span>
+        </a>
+      ))]}
+      </div>
+      
+      
+      <Meteors/>
+    </header>
+
+      {/* Hero Section */}
+      <main id="home" className="flex min-h-screen w-full flex-col items-center justify-center overflow-hidden rounded-lg bg-background">
+        <HyperText className="z-10 font-black text-5xl opacity-100">
+          Dhxnush
+        </HyperText>
+
+        <div className="mt-6 w-[90%] md:w-[60%] text-center">
+          <TextAnimate duration={3} className="z-50 font-black">
+            I’m Dhanush, a full-stack web developer crafting modern, responsive
+            websites and apps with Next.js and Tailwind CSS.
+          </TextAnimate>
+        </div>
+
+        <RetroGrid
+          cellSize={90}
+          angle={70}
+          opacity={1}
+          className=""
+          lightLineColor="black"
+          darkLineColor="black"
+        />
+      </main>
+
+      {/* About Section */}
+      <section id="about" className="relative min-h-screen w-full flex flex-col overflow-hidden border text-black">
+        {/* Background Layer */}
+        
+
+        {/* About Content */}
+        <div className="z-10 flex-col w-full justify-between mt-0 top-0">
+          <VelocityScroll className="font-bebas text-4xl font-black mt-0 top-0">
+            About me⠀
+          </VelocityScroll>
+
+          <div className="font-orbitron mx-auto max-w-4xl text-lg font-medium leading-relaxed mt-[7%]">
+            <TextAnimate duration={3} className="text-black font-extrabold">
+              I'm Dhanush, a passionate full-stack web developer with a strong
+              focus on building modern, fast, and responsive websites and
+              applications. I specialize in working with technologies like
+              Next.js, Tailwind CSS, Node.js, and MongoDB to create clean,
+              scalable, and user-friendly digital experiences.
+              
+
+              Whether it's a landing page, an eCommerce platform, or a
+              full-stack web app, I enjoy turning ideas into real-world
+              solutions with code. I’m always learning and exploring new tools
+              to improve my workflow and deliver better results.
+             
+              When I’m not coding, I love diving into new tech trends, building
+              side projects, and refining my craft.
+            </TextAnimate>
+            <div className="absolute inset-0 -z-20 pointer-events-none">
+          <Particles quantity={300} color="#000000" className="w-full h-[100vh]" />
+          <Ripple className="w-full" />
+        </div>
+          </div>
+          
+        </div>
+      </section>
+      <section id="tech" className=" relative min-h-screen w-full flex  overflow-hidden border text-black">
+      <div className="z-10 flex-col w-full justify-between">
+      <VelocityScroll className="font-bebas text-4xl font-black mt-0 top-0">
+            Tech Stacks⠀
+          </VelocityScroll>
+        <div className="relative flex justify-center items-center overflow-hidden h-[500px] w-full">
+          <OrbitingCircles>
+              <File />
+              <Settings />
+              <File />
+          </OrbitingCircles>
+          <OrbitingCircles radius={100} reverse>
+              <File />
+              <Settings />
+              <File />
+              <Search />
+          </OrbitingCircles>
+        </div>
+      </div>
+      
+        <DotPattern/>
+      </section>
+      <WarpBackground>
+      <section id="projects" className=" relative min-h-screen w-full flex  overflow-hidden border text-black">
+      <div className="z-10 flex-col w-full justify-between">
+          <VelocityScroll className="text-4xl font-black mt-0 top-0">
+            Projects⠀
+          </VelocityScroll>
+          <div className="w-full py-16 bg-transparent text-black">
+      {/* Marquee Row 1 */}
+      <Marquee className="z-30 mb-8 bg-transparent">
+        {[...Array(4)].map((_, i) => (
+          <MagicCard key={`row1-${i}`} className="mx-4 border-white">
+            <div className="w-[300px] h-[360px] bg-black rounded-3xl shadow-lg text-white p-4 flex flex-col justify-between">
+              {/* Replace below img with your Image component */}
+              <div className="w-full h-40 rounded-2xl overflow-hidden mb-4 bg-white">
+                {/* Example placeholder — replace src */}
+                {/* <Image src="/your-image.jpg" alt="example" fill className="object-cover" /> */}
+                <img
+                  src="https://via.placeholder.com/300x160"
+                  alt="placeholder"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <h3 className="text-xl font-bold mb-1">Title Goes Here</h3>
+              <p className="text-sm text-gray-300">
+                Short description or tag line. Looks neat in minimal style.
+              </p>
+              <span className="mt-2 text-xs text-white/60">Hover me</span>
+            </div>
+          </MagicCard>
+        ))}
+      </Marquee>
+
+      {/* Marquee Row 2 - Reversed */}
+      <Marquee className="z-30 border-none" reverse>
+        {[...Array(4)].map((_, i) => (
+          <MagicCard key={`row2-${i}`} className="mx-4 border-none">
+            <div className="w-[300px] h-[360px] bg-black rounded-3xl shadow-lg text-white p-4 flex flex-col justify-between">
+              {/* Replace below img with your Image component */}
+              <div className="w-full h-40 rounded-2xl overflow-hidden mb-4 bg-white">
+                {/* Example placeholder — replace src */}
+                {/* <Image src="/your-image.jpg" alt="example" fill className="object-cover" /> */}
+                <img
+                  src="https://via.placeholder.com/300x160"
+                  alt="placeholder"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <h3 className="text-xl font-bold mb-1">Title Goes Here</h3>
+              <p className="text-sm text-gray-300">
+                Short description or tag line. Looks neat in minimal style.
+              </p>
+              <span className="mt-2 text-xs text-white/60">Hover me</span>
+            </div>
+          </MagicCard>
+        ))}
+      </Marquee>
+    </div>
+        </div>
+      
+      </section>
+      </WarpBackground>
+      <section id="contact" className=" relative min-h-screen w-full flex  overflow-hidden border text-black">
+      <div className="z-10 flex-col w-full justify-between">
+      <VelocityScroll className="text-4xl font-black mt-0 top-0">
+            Contact Me⠀
+          </VelocityScroll>
+          <div className="max-w-5xl mx-auto text-center">
+        <h2 className="text-4xl font-bold mb-6"></h2>
+        <TextAnimate className="font-black p-3">
+          Feel free to connect through any of the platforms below. I'm open to work, collaboration, or even a quick chat!
+        </TextAnimate>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 mt-4 md:grid-cols-3 gap-6 justify-items-center">
+          {/* GitHub */}
+          <MagicCard className="w-full max-w-[260px] p-6 rounded-2xl bg-white/10 backdrop-blur-md">
+            <a
+              href="https://github.com/yourusername"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center"
+            >
+              <Github className="w-8 h-8 mb-3" />
+              <span className="font-semibold">GitHub</span>
+              <p className="text-sm text-gray-300 mt-1">/yourusername</p>
+            </a>
+          </MagicCard>
+
+          {/* LinkedIn */}
+          <MagicCard className="w-full max-w-[260px] p-6 rounded-2xl bg-white/10 backdrop-blur-md">
+            <a
+              href="https://linkedin.com/in/yourprofile"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center"
+            >
+              <Linkedin className="w-8 h-8 mb-3" />
+              <span className="font-semibold">LinkedIn</span>
+              <p className="text-sm text-gray-300 mt-1">/yourprofile</p>
+            </a>
+          </MagicCard>
+
+          {/* Gmail */}
+          <MagicCard className="w-full max-w-[260px] p-6 rounded-2xl bg-white/10 backdrop-blur-md">
+            <a href="mailto:yourmail@gmail.com" className="flex flex-col items-center">
+              <Mail className="w-8 h-8 mb-3" />
+              <span className="font-semibold">Email</span>
+              <p className="text-sm text-gray-300 mt-1">yourmail@gmail.com</p>
+            </a>
+          </MagicCard>
+
+          {/* Phone */}
+          <MagicCard className="w-full max-w-[260px] p-6 rounded-2xl bg-white/10 backdrop-blur-md">
+            <a href="tel:+919999999999" className="flex flex-col items-center">
+              <Phone className="w-8 h-8 mb-3" />
+              <span className="font-semibold">Phone</span>
+              <p className="text-sm text-gray-300 mt-1">+91 99999 99999</p>
+            </a>
+          </MagicCard>
+
+          {/* Resume */}
+          <MagicCard className="w-full max-w-[260px] p-6 rounded-2xl bg-white/10 backdrop-blur-md">
+            <a href="/resume.pdf" target="_blank" className="flex flex-col items-center">
+              <FileText className="w-8 h-8 mb-3" />
+              <span className="font-semibold">Resume</span>
+              <p className="text-sm text-gray-300 mt-1">View PDF</p>
+            </a>
+          </MagicCard>
+
+          {/* Discord */}
+          <MagicCard className="w-full max-w-[260px] p-6 rounded-2xl bg-white/10 backdrop-blur-md">
+            <a
+              href="https://discord.com/users/yourdiscordid"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center"
+            >
+              <MessageCircleMore className="w-8 h-8 mb-3" />
+              <span className="font-semibold">Discord</span>
+              <p className="text-sm text-gray-300 mt-1">@yourtag</p>
+            </a>
+          </MagicCard>
+        </div>
+      </div>
+          </div>
+          <Particles quantity={300} color="#000000" className="z-20"/>
+          <DotPattern/>
+      </section>
+      <footer className="w-full bg-black text-white py-6 px-4 border-t border-white/10">
+      <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between">
+        <p className="text-sm text-gray-400">&copy; {new Date().getFullYear()} Dhanush S. All rights reserved.</p>
+
+        <div className="flex space-x-4 mt-4 sm:mt-0">
           <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href="https://github.com/yourusername"
             target="_blank"
             rel="noopener noreferrer"
+            className="text-gray-400 hover:text-white transition"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
+            GitHub
           </a>
           <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href="https://linkedin.com/in/yourprofile"
             target="_blank"
             rel="noopener noreferrer"
+            className="text-gray-400 hover:text-white transition"
           >
-            Read our docs
+            LinkedIn
+          </a>
+          <a
+            href="mailto:yourmail@gmail.com"
+            className="text-gray-400 hover:text-white transition"
+          >
+            Gmail
+          </a>
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-white transition"
+          >
+            Resume
           </a>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </div>
+    </footer>
+      
+    </>
   );
 }

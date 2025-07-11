@@ -6,7 +6,7 @@ import { TextAnimate } from "@/components/magicui/text-animate";
 import { HyperText } from "@/components/magicui/hyper-text";
 import { VelocityScroll } from "@/components/magicui/scroll-based-velocity";
 import { Ripple } from "@/components/magicui/ripple";
-import { Home, Settings, Search,Github, Linkedin, Mail, Phone, FileText,MessageCircleMore, Info, Code, Folder, MessageCircle } from "lucide-react";
+import { Sun,Moon, Home, Settings, Search,Github, Linkedin, Mail, Phone, FileText,MessageCircleMore, Info, Code, Folder, MessageCircle} from "lucide-react";
 import { Pointer } from "@/components/magicui/pointer";
 import { ScrollProgress } from "@/components/magicui/scroll-progress";
 import { DotPattern } from "@/components/magicui/dot-pattern";
@@ -15,6 +15,9 @@ import { File } from "lucide-react";
 import { WarpBackground } from "@/components/magicui/warp-background";
 import { Marquee } from "@/components/magicui/marquee";
 import { MagicCard } from "@/components/magicui/magic-card";
+import { ThemeProvider } from "next-themes";
+import { useTheme } from "next-themes";
+import { useState,useEffect } from "react";
 
 export default function Main() {
 
@@ -22,20 +25,27 @@ export default function Main() {
     const section = document.getElementById(id);
     if (section) section.scrollIntoView({ behavior: "smooth"});
   };
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
 
   const navItems = [
     { icon: <Home size={25} />, label: "Home", id: "home" },
     { icon: <Info size={25} />, label: "About Me", id: "about" },
     { icon: <Code size={25} />, label: "Tech Stack", id: "tech" },
     { icon: <Folder size={25} />, label: "Projects", id: "projects" },
+    { icon: <MessageCircle size={25} />, label: "Contact Me", id: "contact" }
   ];
 
   const socialItems = [
-    { icon: <Github size={25} />, label: "GitHub", url: "https://github.com/yourusername" },
-    { icon: <Linkedin size={25} />, label: "LinkedIn", url: "https://linkedin.com/in/yourprofile" },
-    { icon: <Mail size={25} />, label: "Gmail", url: "mailto:youremail@gmail.com" },
-    { icon: <Phone size={25} />, label: "Phone", url: "tel:+919876543210" },
-    { icon: <MessageCircle size={25} />, label: "Discord", url: "https://discord.com/users/yourid" },
+    { icon: <Github size={25} />, label: "GitHub", url: "https://github.com/Dhxnushh" },
+    { icon: <Linkedin size={25} />, label: "LinkedIn", url: "https://www.linkedin.com/in/dhanush-s-04868128b/" },
+    
   ];
   return (
     <>
@@ -83,7 +93,18 @@ export default function Main() {
             {item.label}
           </span>
         </a>
+        
       ))]}
+      <button
+      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+      className="group flex flex-col right-0 items-center justify-center p-2  border-black rounded-full  hover:text-black transition duration-300 ease-in-out"
+      aria-label="Toggle Theme"
+    >
+      {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+      <span className="text-[10px] font-mono opacity-0 group-hover:opacity-100 transition-opacity duration-200 mt-1">
+            Theme
+          </span>
+    </button>
       </div>
       
       
@@ -184,7 +205,7 @@ export default function Main() {
           <MagicCard key={`row1-${i}`} className="mx-4 border-white">
             <div className="w-[300px] h-[360px] bg-black rounded-3xl shadow-lg text-white p-4 flex flex-col justify-between">
               {/* Replace below img with your Image component */}
-              <div className="w-full h-40 rounded-2xl overflow-hidden mb-4 bg-white">
+              <div className="w-full h-40 rounded-2xl overflow-hidden mb-4 bg-background">
                 {/* Example placeholder — replace src */}
                 {/* <Image src="/your-image.jpg" alt="example" fill className="object-cover" /> */}
                 <img
@@ -209,7 +230,7 @@ export default function Main() {
           <MagicCard key={`row2-${i}`} className="mx-4 border-none">
             <div className="w-[300px] h-[360px] bg-black rounded-3xl shadow-lg text-white p-4 flex flex-col justify-between">
               {/* Replace below img with your Image component */}
-              <div className="w-full h-40 rounded-2xl overflow-hidden mb-4 bg-white">
+              <div className="w-full h-40 rounded-2xl overflow-hidden mb-4 bg-background">
                 {/* Example placeholder — replace src */}
                 {/* <Image src="/your-image.jpg" alt="example" fill className="object-cover" /> */}
                 <img
@@ -245,53 +266,53 @@ export default function Main() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 mt-4 md:grid-cols-3 gap-6 justify-items-center">
           {/* GitHub */}
-          <MagicCard className="w-full max-w-[260px] p-6 rounded-2xl bg-white/10 backdrop-blur-md">
+          <MagicCard className="w-full max-w-[260px] p-6 rounded-2xl bg-background/10 backdrop-blur-md">
             <a
-              href="https://github.com/yourusername"
+              href="https://github.com/Dhxnushh"
               target="_blank"
               rel="noopener noreferrer"
               className="flex flex-col items-center"
             >
               <Github className="w-8 h-8 mb-3" />
               <span className="font-semibold">GitHub</span>
-              <p className="text-sm text-gray-300 mt-1">/yourusername</p>
+              <p className="text-sm text-gray-300 mt-1">/Dhxnushh</p>
             </a>
           </MagicCard>
 
           {/* LinkedIn */}
-          <MagicCard className="w-full max-w-[260px] p-6 rounded-2xl bg-white/10 backdrop-blur-md">
+          <MagicCard className="w-full max-w-[260px] p-6 rounded-2xl bg-background/10 backdrop-blur-md">
             <a
-              href="https://linkedin.com/in/yourprofile"
+              href="https://www.linkedin.com/in/dhanush-s-04868128b/"
               target="_blank"
               rel="noopener noreferrer"
               className="flex flex-col items-center"
             >
               <Linkedin className="w-8 h-8 mb-3" />
               <span className="font-semibold">LinkedIn</span>
-              <p className="text-sm text-gray-300 mt-1">/yourprofile</p>
+              <p className="text-sm text-gray-300 mt-1">/Dhanush</p>
             </a>
           </MagicCard>
 
           {/* Gmail */}
-          <MagicCard className="w-full max-w-[260px] p-6 rounded-2xl bg-white/10 backdrop-blur-md">
-            <a href="mailto:yourmail@gmail.com" className="flex flex-col items-center">
+          <MagicCard className="w-full max-w-[260px] p-6 rounded-2xl bg-background/10 backdrop-blur-md">
+            <a href="mailto:dhanush2675@gmail.com" className="flex flex-col items-center">
               <Mail className="w-8 h-8 mb-3" />
               <span className="font-semibold">Email</span>
-              <p className="text-sm text-gray-300 mt-1">yourmail@gmail.com</p>
+              <p className="text-sm text-gray-300 mt-1">dhanush2675@gmail.com</p>
             </a>
           </MagicCard>
 
           {/* Phone */}
-          <MagicCard className="w-full max-w-[260px] p-6 rounded-2xl bg-white/10 backdrop-blur-md">
-            <a href="tel:+919999999999" className="flex flex-col items-center">
+          <MagicCard className="w-full max-w-[260px] p-6 rounded-2xl bg-background/10 backdrop-blur-md">
+            <a href="tel:+918637624541" className="flex flex-col items-center">
               <Phone className="w-8 h-8 mb-3" />
               <span className="font-semibold">Phone</span>
-              <p className="text-sm text-gray-300 mt-1">+91 99999 99999</p>
+              <p className="text-sm text-gray-300 mt-1">+91 8637624541</p>
             </a>
           </MagicCard>
 
           {/* Resume */}
-          <MagicCard className="w-full max-w-[260px] p-6 rounded-2xl bg-white/10 backdrop-blur-md">
+          <MagicCard className="w-full max-w-[260px] p-6 rounded-2xl bg-background/10 backdrop-blur-md">
             <a href="/resume.pdf" target="_blank" className="flex flex-col items-center">
               <FileText className="w-8 h-8 mb-3" />
               <span className="font-semibold">Resume</span>
@@ -300,7 +321,7 @@ export default function Main() {
           </MagicCard>
 
           {/* Discord */}
-          <MagicCard className="w-full max-w-[260px] p-6 rounded-2xl bg-white/10 backdrop-blur-md">
+          <MagicCard className="w-full max-w-[260px] p-6 rounded-2xl bg-background/10 backdrop-blur-md">
             <a
               href="https://discord.com/users/yourdiscordid"
               target="_blank"
